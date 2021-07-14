@@ -25,4 +25,10 @@ public class AccountService implements UserDetailsService {
                 .roles(account.getRole())
                 .build();
     }
+
+    public Account createNew(Account account) {
+        // account.setPassword("{noop}" + account.getPassword());
+        account.encodePassword();
+        return this.accountRepository.save(account);
+    }
 }
